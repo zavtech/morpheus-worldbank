@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+
+    <test name="Catalog Tests">
+        <classes>
+            <class name="com.zavtech.morpheus.wb.WBCatalogTest"/>
+        </classes>
+    </test>
+
+
+    <test name="Climate Tests">
+        <classes>
+            <class name="com.zavtech.morpheus.wb.WBClimateTest"/>
+        </classes>
+    </test>
+
+
+    <test name="Country Test">
+        <classes>
+            <class name="com.zavtech.morpheus.wb.WBCountryTest"/>
+        </classes>
+    </test>
+
+
+    <test name="Indicator Test">
+        <classes>
+            <class name="com.zavtech.morpheus.wb.WBIndicatorTest"/>
+        </classes>
+    </test>
+
+</suite>
