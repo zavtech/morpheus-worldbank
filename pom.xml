@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.zavtech</groupId>
   <artifactId>morpheus-worldbank</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.12</version>
   <packaging>jar</packaging>
 
   <name>Morpheus-Worldbank</name>
@@ -60,13 +60,7 @@
     <dependency>
       <groupId>com.zavtech</groupId>
       <artifactId>morpheus-core</artifactId>
-      <version>0.9.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.zavtech</groupId>
-      <artifactId>morpheus-viz</artifactId>
-      <version>0.9.1</version>
+      <version>0.9.12</version>
     </dependency>
 
     <dependency>
