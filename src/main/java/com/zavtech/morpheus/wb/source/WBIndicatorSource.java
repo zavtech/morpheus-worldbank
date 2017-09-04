@@ -33,7 +33,6 @@ import com.zavtech.morpheus.index.Index;
 import com.zavtech.morpheus.range.Range;
 import com.zavtech.morpheus.util.Initialiser;
 import com.zavtech.morpheus.util.text.parser.Parser;
-import com.zavtech.morpheus.viz.chart.Chart;
 import com.zavtech.morpheus.wb.WBException;
 import com.zavtech.morpheus.wb.WBLoader;
 import com.zavtech.morpheus.wb.WBResponse;
@@ -318,16 +317,6 @@ public class WBIndicatorSource extends DataFrameSource<LocalDate,String,WBIndica
         });
 
         frame.out().print(200);
-
-        Chart.of(frame, chart -> {
-            chart.plot(0).withLines();
-            chart.title().withText("GDP Per Capita USD for G7 Countries");
-            chart.subtitle().withText("Source: World Bank, Indicator: NY.GDP.PCAP.CD");
-            chart.axes().domain().label().withText("Year");
-            chart.axes().range(0).label().withText("GBP Per Capita (USD)");
-            chart.legend().on().right();
-            chart.show();
-        });
 
         Thread.currentThread().join();
     }
