@@ -79,12 +79,12 @@ public class WBClimateSource extends DataFrameSource<WBClimateKey,Month,WBClimat
                     final String url = createUrl(options, range);
                     request.setUrl(url);
                     request.setRetryCount(3);
-                    request.setResponseHandler((status, stream) -> {
+                    request.setResponseHandler(response -> {
                         try {
-                            if (status.getCode() == 200) {
+                            if (response.getStatus().getCode() == 200) {
                                 final WBLoader loader = new WBLoader();
                                 final Gson gson = loader.builder().create();
-                                final JsonReader reader = loader.createReader(stream);
+                                final JsonReader reader = loader.createReader(response.getStream());
                                 reader.beginArray();
                                 while (reader.hasNext()) {
                                     final WBClimate.MonthlyRecord record = gson.fromJson(reader, WBClimate.MonthlyRecord.class);
@@ -102,7 +102,7 @@ public class WBClimateSource extends DataFrameSource<WBClimateKey,Month,WBClimat
                                 System.out.println("World Bank request " + url + " completed in " + (t2-t1) + " millis");
                                 return Optional.empty();
                             } else {
-                                throw new WBException("World Bank API responded with status code: " + status + " to " + url);
+                                throw new WBException("World Bank API responded with status code: " + response.getStatus() + " to " + url);
                             }
                         } catch (WBException ex) {
                             throw ex;
