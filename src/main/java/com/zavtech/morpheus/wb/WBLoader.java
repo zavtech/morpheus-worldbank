@@ -81,18 +81,18 @@ public class WBLoader {
             final long t1 = System.currentTimeMillis();
             request.setUrl(url);
             request.setRetryCount(3);
-            request.setResponseHandler((status, stream) -> {
+            request.setResponseHandler(response -> {
                 try {
-                    if (status.getCode() == 200) {
+                    if (response.getStatus().getCode() == 200) {
                         final Gson gson = builder().create();
-                        final JsonReader reader = createReader(stream);
+                        final JsonReader reader = createReader(response.getStream());
                         final WBHeader header = parseHeader(reader, gson);
                         final T body = messageHandler.apply(reader);
                         final long t2 = System.currentTimeMillis();
                         System.out.println("World Bank request " + url + " completed in " + (t2-t1) + " millis");
                         return Optional.of(new WBResponse<>(header, body));
                     } else {
-                        throw new WBException("World Bank API responded with status code: " + status + " to " + url);
+                        throw new WBException("World Bank API responded with status code: " + response.getStatus() + " to " + url);
                     }
                 } catch (WBException ex) {
                     throw ex;
